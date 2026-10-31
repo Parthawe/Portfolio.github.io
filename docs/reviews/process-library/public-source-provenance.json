@@ -794,6 +794,136 @@
       "evidenceNote": "Documents the handoff artifact; production performance is not independently validated.",
       "sourceFile": "src/pages/projects/MentraBrandPage.tsx",
       "sourceLine": 95
+    },
+    {
+      "id": "mentra-6-28341",
+      "title": "An app-led home",
+      "src": "/Assets/case-study-slides/mentra/slide-6-28341.webp",
+      "alt": "Home screen and runtime \u00b7 9:41 9:41 Before After",
+      "stage": "experiment",
+      "caption": "Give app launching the main area and reduce the device panel\u2019s dominance.",
+      "sourceHref": "/mentra#decision-runtime",
+      "creator": "Mentra project archive",
+      "evidenceNote": "Original design comparison. Evaluation dates and cohort sizes are not included in the public source.",
+      "decision": {
+        "question": "Should the home screen lead with device controls or apps?",
+        "choice": "Give app launching the main area and reduce the device panel\u2019s dominance.",
+        "evidence": "Compare the large device card and active/inactive lists on the left with the app grid and bottom runtime entry on the right.",
+        "limit": "Original design comparison. Evaluation dates and cohort sizes are not included in the public source."
+      },
+      "slug": "mentra",
+      "sourceFile": "src/data/productDecisionStories.ts",
+      "sourceLine": 23,
+      "sourceSlideFile": "src/data/mentra-case-study-slides.json",
+      "sourceSlideLine": 187,
+      "sourceSlideId": "6:28341"
+    },
+    {
+      "id": "mentra-0-65",
+      "title": "Three ways to reach runtime controls",
+      "src": "/Assets/case-study-slides/mentra/slide-0-65.webp",
+      "alt": "Home screen and runtime \u00b7 DECISION The bottom drawer won RECOGNIZE CONTROL IDLE COST SCALE A Persistent dock STRONG STRONG HIGH MEDIUM B Card switcher MEDIUM STRONG M",
+      "stage": "decision",
+      "caption": "Select the bottom drawer over a persistent dock or card switcher.",
+      "sourceHref": "/mentra#decision-runtime",
+      "creator": "Mentra project archive",
+      "evidenceNote": "This is the source\u2019s qualitative tradeoff comparison, not a timed benchmark.",
+      "decision": {
+        "question": "How can runtime controls stay available without taking over home?",
+        "choice": "Select the bottom drawer over a persistent dock or card switcher.",
+        "evidence": "Read the source comparison across recognition, control, idle cost, and scale.",
+        "limit": "This is the source\u2019s qualitative tradeoff comparison, not a timed benchmark."
+      },
+      "slug": "mentra",
+      "sourceFile": "src/data/productDecisionStories.ts",
+      "sourceLine": 24,
+      "sourceSlideFile": "src/data/mentra-case-study-slides.json",
+      "sourceSlideLine": 267,
+      "sourceSlideId": "0:65"
+    },
+    {
+      "id": "mentra-0-66",
+      "title": "The runtime drawer",
+      "src": "/Assets/case-study-slides/mentra/slide-0-66.webp",
+      "alt": "Home screen and runtime \u00b7 SELECTED SYSTEM One handle became the runtime home 1 Count 2 Active app 3 Background apps 4 Data access 5 Stop and recover",
+      "stage": "decision",
+      "caption": "Use one runtime entry for the count, app identity, background apps, data access, and control.",
+      "sourceHref": "/mentra#decision-runtime",
+      "creator": "Mentra project archive",
+      "decision": {
+        "question": "What is running, and how can it be stopped?",
+        "choice": "Use one runtime entry for the count, app identity, background apps, data access, and control.",
+        "evidence": "Locate the running count at the bottom, then the app actions in the open drawer."
+      },
+      "slug": "mentra",
+      "sourceFile": "src/data/productDecisionStories.ts",
+      "sourceLine": 25,
+      "sourceSlideFile": "src/data/mentra-case-study-slides.json",
+      "sourceSlideLine": 277,
+      "sourceSlideId": "0:66"
+    },
+    {
+      "id": "mentra-500-3981",
+      "title": "Listening, working, and uncertainty",
+      "src": "/Assets/case-study-slides/mentra/slide-500-3981.webp",
+      "alt": "Home screen and runtime \u00b7 AI STATES AI explained what was happening before it answered. LISTENING Listening\u2026 WORKING Working\u2026 UNSURE Which MiniApp? Recorder Captions ",
+      "stage": "experiment",
+      "caption": "Distinguish listening, working, and uncertain input.",
+      "sourceHref": "/mentra#decision-recovery",
+      "creator": "Mentra project archive",
+      "decision": {
+        "question": "What should happen before an AI answer is ready?",
+        "choice": "Distinguish listening, working, and uncertain input.",
+        "evidence": "Compare the Listening and Working states with the clarification choices for an uncertain MiniApp request."
+      },
+      "slug": "mentra",
+      "sourceFile": "src/data/productDecisionStories.ts",
+      "sourceLine": 26,
+      "sourceSlideFile": "src/data/mentra-case-study-slides.json",
+      "sourceSlideLine": 297,
+      "sourceSlideId": "500:3981"
+    },
+    {
+      "id": "mentra-500-3980",
+      "title": "Recovery that preserves intent",
+      "src": "/Assets/case-study-slides/mentra/slide-500-3980.webp",
+      "alt": "Home screen and runtime \u00b7 RECOVERY Failure never became a dead end. The system preserved intent and offered a clear next step. 01 Connection lost Reconnect 02 Permiss",
+      "stage": "decision",
+      "caption": "Offer a next action specific to the failure while preserving intent.",
+      "sourceHref": "/mentra#decision-recovery",
+      "creator": "Mentra project archive",
+      "decision": {
+        "question": "What can a wearer do when a request fails?",
+        "choice": "Offer a next action specific to the failure while preserving intent.",
+        "evidence": "Connection lost leads to Reconnect; permission blocked to Settings; a failed request to Retry, Edit, or Cancel."
+      },
+      "slug": "mentra",
+      "sourceFile": "src/data/productDecisionStories.ts",
+      "sourceLine": 27,
+      "sourceSlideFile": "src/data/mentra-case-study-slides.json",
+      "sourceSlideLine": 307,
+      "sourceSlideId": "500:3980"
+    },
+    {
+      "id": "mentra-500-3979",
+      "title": "Prototype, shipped, after beta",
+      "src": "/Assets/case-study-slides/mentra/slide-500-3979.webp",
+      "alt": "Results and production learning \u00b7 PRODUCTION LEARNING Designed \u2192 shipped \u2192 tightened after beta. DESIGNED SHIPPED AFTER BETA Bottom drawer prototype Runtime drawer in product",
+      "stage": "outcome",
+      "caption": "Tighten running count, app attribution, and direct stop after beta.",
+      "sourceHref": "/mentra#decision-results",
+      "creator": "Mentra project archive",
+      "decision": {
+        "question": "What changed between the prototype and production?",
+        "choice": "Tighten running count, app attribution, and direct stop after beta.",
+        "evidence": "Read the Designed \u2192 Shipped \u2192 After beta progression and its three named refinements."
+      },
+      "slug": "mentra",
+      "sourceFile": "src/data/productDecisionStories.ts",
+      "sourceLine": 30,
+      "sourceSlideFile": "src/data/mentra-case-study-slides.json",
+      "sourceSlideLine": 473,
+      "sourceSlideId": "500:3979"
     }
   ],
   "explorations": {
@@ -816,6 +946,7 @@
     "black-hole": "Which physical analogy is easiest to connect back to the astronomical phenomenon without introducing a misconception?",
     "the-point-cdc": "Can community members reach a relevant program and explain its next step without a facilitator?",
     "vj-software": "Can residents recover from an unavailable spot or failed payment before confirming an irreversible selection?",
-    "mentra-brand": "Could two frame variants remain distinguishable when the packaging is seen only briefly?"
+    "mentra-brand": "Could two frame variants remain distinguishable when the packaging is seen only briefly?",
+    "mentra": "How would a runtime drawer handle dozens of active apps without hiding the wearer\u2019s most important controls?"
   }
 }

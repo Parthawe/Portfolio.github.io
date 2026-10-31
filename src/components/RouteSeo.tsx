@@ -120,7 +120,7 @@ function getRouteMeta(pathname: string): RouteMeta {
   if (pathname === '/process' || pathname.startsWith('/process/')) {
     const project = getProject(pathname.split('/')[2] || '')
     const valid = pathname === '/process' || (project && isRoutableProject(project))
-    return { title: valid ? `${project ? project.name + ' · ' : ''}References & process · Parth Pawar` : 'Page not found · Parth Pawar', description: 'Public project artifacts, documented influences, experiments, and design decisions.', image: DEFAULT_IMAGE, url, type: project ? 'article' : 'website', robots: valid ? robots : 'noindex, nofollow' }
+    return { title: valid ? `${project ? project.name + ' · ' : ''}References & process · Parth Pawar` : 'Page not found · Parth Pawar', description: 'Public project artifacts, documented influences, experiments, and design decisions.', image: toAbsoluteUrl(DEFAULT_IMAGE), url, type: project ? 'article' : 'website', robots: valid ? robots : 'noindex, nofollow' }
   }
   if (pathname === '/') {
     return {

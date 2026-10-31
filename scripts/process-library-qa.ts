@@ -34,3 +34,9 @@ for (const [, slug, module] of routes.matchAll(/slug: '([^']+)', page: \(\) => i
 assert(readFileSync('src/components/case-study/ProjectHeader.tsx','utf8').includes('/process/'))
 assert(readFileSync('src/components/case-study/PracticeEntry.tsx','utf8').includes('/process/'))
 console.log(`Verified ${processProjects.length} public project routes and ${artifacts} curated artifacts; access boundaries and source paths passed.`)
+const provenance = JSON.parse(readFileSync('docs/reviews/process-library/public-source-provenance.json', 'utf8')).artifacts as { slug: string; src: string; sourceFile: string; sourceLine: number }[]
+for (const { project, curation } of processProjects) for (const artifact of curation.artifacts) {
+  const source = provenance.find(row => row.slug === project.slug && row.src === artifact.src)
+  assert(source && source.sourceLine > 0 && existsSync(source.sourceFile), `${artifact.id}: recorded public provenance`)
+}
+assert.equal(provenance.length, artifacts)

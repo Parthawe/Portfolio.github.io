@@ -21,6 +21,7 @@ export default function ProcessLibraryPage() {
   const [params, setParams] = useSearchParams()
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('all')
+  useEffect(() => { setQuery('') }, [slug])
   const stage = params.get('stage') || 'all'
   const selectedId = params.get('ref')
   const dialog = useRef<HTMLDialogElement>(null)
@@ -42,7 +43,7 @@ export default function ProcessLibraryPage() {
   }, [selected])
   if (slug && !curation) return <NotFoundPage />
   const artifacts = curation?.artifacts ?? []
-  const shown = artifacts.filter(a => (stage === 'all' || a.stage === stage) && `${a.title} ${a.caption} ${a.creator}`.toLowerCase().includes(query.toLowerCase()))
+  const shown = artifacts.filter(a => (stage === 'all' || a.stage === stage) && `${a.title} ${a.caption} ${a.creator} ${a.evidenceNote || ''}`.toLowerCase().includes(query.toLowerCase()))
   const categories = [...new Set(processProjects.map(x => x.project.category))]
   const filtered = [...processProjects].sort((a, b) => Number(b.curation.artifacts.length > 0) - Number(a.curation.artifacts.length > 0)).filter(x => (category === 'all' || x.project.category === category) && `${x.project.name} ${x.project.desc} ${x.record?.evidence || ''}`.toLowerCase().includes(query.toLowerCase()))
   return <>
