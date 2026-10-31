@@ -490,6 +490,7 @@ export default function WorkPage() {
             <header className="work-page-header">
               <div className="work-page-intro">
                 <h1 className="work-page-title">Work</h1>
+                <Link className="glass-action" to="/process">References &amp; process ↗</Link>
                 <nav className="work-mobile-views glass-segments" aria-label="Work page views">
                   {([['editorial', 'Editorial'], ['library', 'Index'], ['timeline', 'Arc']] as const).map(([view, label]) => <Link key={view} to={viewHref(view)} aria-current={viewMode === view ? 'page' : undefined}>{label}</Link>)}
                 </nav>

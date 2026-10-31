@@ -117,6 +117,11 @@ function getRouteMeta(pathname: string): RouteMeta {
   const url = pathname === '/' ? SITE_URL : `${SITE_URL}${pathname}`
   const robots = (NOINDEX_ROUTES.has(pathname) || pathname.startsWith('/experience-preview')) ? 'noindex, nofollow' : 'index, follow'
 
+  if (pathname === '/process' || pathname.startsWith('/process/')) {
+    const project = getProject(pathname.split('/')[2] || '')
+    const valid = pathname === '/process' || (project && isRoutableProject(project))
+    return { title: valid ? `${project ? project.name + ' · ' : ''}References & process · Parth Pawar` : 'Page not found · Parth Pawar', description: 'Public project artifacts, documented influences, experiments, and design decisions.', image: DEFAULT_IMAGE, url, type: project ? 'article' : 'website', robots: valid ? robots : 'noindex, nofollow' }
+  }
   if (pathname === '/') {
     return {
       title: 'Parth Pawar, Product Designer',

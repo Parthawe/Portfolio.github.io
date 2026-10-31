@@ -223,7 +223,15 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
     }
   })
   .filter(Boolean)
+const processSlugs = [...readFileSync(join(root, 'src/data/projectRoutes.ts'), 'utf8').matchAll(/slug: '([^']+)'/g)].map(match => match[1])
+routeLabels.set('process', 'References & process')
+routeDescriptions.set('process', 'Public project artifacts, influences, experiments, alternatives, and design decisions.')
+for (const slug of processSlugs) {
+  routeLabels.set(`process/${slug}`, `${routeLabels.get(slug) || titleCase(slug)} · References & process`)
+  routeDescriptions.set(`process/${slug}`, `Public source material and design process for ${routeLabels.get(slug) || titleCase(slug)}.`)
+}
 const routes = [...new Set([
+  'process', ...processSlugs.map(slug => `process/${slug}`),
   'physical-worlds', 'project-experiences', 'shuffle/simulation', 'typeface/workshop',
   ...(process.env.VITE_EXPERIENCE_PREVIEWS_ENABLED==='1'?['experience-preview',...readExperienceRegistry().filter(item=>item.status==='draft').map(item=>`experience-preview/${item.slug}`)]:[]),
   ...[...readFileSync(join(root,'src/data/projectExperiences.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/prototype`),

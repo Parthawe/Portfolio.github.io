@@ -92,6 +92,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const BookPage = lazy(() => import('./pages/BookPage'))
 const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
 const StudioPage = lazy(() => import('./pages/StudioPage'))
+const ProcessLibraryPage = lazy(() => import('./pages/ProcessLibraryPage'))
 const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
 const MotionPage = lazy(() => import('./pages/MotionPage'))
 const AfterHoursPage = lazy(() => import('./pages/AfterHoursPage'))
@@ -166,6 +167,9 @@ export default function App() {
           ))}
           <Route path="/mentra-website" element={<Navigate to="/mentra#cs-website" replace />} />
 
+          {/* Public process projection uses only already-public portfolio material. */}
+          <Route path="/process" element={<ProcessLibraryPage />} />
+          <Route path="/process/:slug" element={<ProcessLibraryPage />} />
           {/* Misc pages */}
           <Route path="/playbook" element={<PlaybookPage />} />
           <Route path="/writing" element={<NotFoundPage />} />
