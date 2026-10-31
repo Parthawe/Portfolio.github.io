@@ -1,0 +1,2 @@
+✓ built in 6.95s
+[routes] wrote 189 static route entrypoints under /
