@@ -1,3 +1,4 @@
+import {verifyPrivateProjectEntry,privateProjectSlugs} from './private-project-entry-assertions.mjs'
 import { verifyRaahiPrivateEntry } from './raahi-private-entry-assertions.mjs'
 import {chromium,webkit,expect} from '@playwright/test'
 import assert from 'node:assert/strict'
@@ -11,7 +12,7 @@ for(const [engine,width,theme] of [[chromium,1440,'dark'],[chromium,390,'light']
  await p.goto(base+'/experience-preview/moniac-machine');await p.getByRole('button',{name:'Explore rules without shocks',exact:true}).click();const valve=p.getByRole('slider',{name:'Imports valve',exact:true});await valve.focus();await p.keyboard.press('ArrowRight');await expect(valve).toHaveClass(/is-selected/);await expect(p.locator('.moniac-isometric-screen')).toHaveAttribute('data-active-policy','imports');await expect(p.locator('.moniac-control-inspector')).toContainText('Imports');await p.locator('#moniac-policy').focus();const stroke=await valve.locator('.valve-focus-ring').evaluate(e=>getComputedStyle(e).stroke);assert(!['none','transparent','rgba(0, 0, 0, 0)'].includes(stroke),'selection remains visible after the valve loses focus');await p.screenshot({path:`${out}/moniac-${engine.name()}-${width}.png`,fullPage:true})
  for(const slug of ['mentra','healthapp']){await p.goto(base+'/experience-preview/'+slug);await expect(p.locator('.prototype-page > footer').getByRole('link',{name:'All experiences',exact:true})).toHaveCount(1);await expect(p.locator('.original-interface-player img')).toBeVisible();assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))}
  await p.goto(base+'/experience-preview/raahi-project');await verifyRaahiPrivateEntry(p)
- assert.deepEqual(errors,[]);results.push({browser:engine.name(),width,theme,drawingFit:fit,tabletMonitor:'same sampled input; clear verified',selectedValve:'visible and linked',originalEvidence:true,footerDuplicates:0,errors});await p.close()
+ for(const slug of privateProjectSlugs){await p.goto(base+'/experience-preview/'+slug);await verifyPrivateProjectEntry(p,slug)}assert.deepEqual(errors,[]);results.push({browser:engine.name(),width,theme,drawingFit:fit,tabletMonitor:'same sampled input; clear verified',selectedValve:'visible and linked',originalEvidence:true,footerDuplicates:0,errors});await p.close()
  }finally{await b.close()}
 }
 writeFileSync(out+'/results.json',JSON.stringify(results,null,2));console.log('Passed fitted instruments, live tablet sampling/clear, source-video failure recovery, valve selection and interface presentation in three browser profiles.')

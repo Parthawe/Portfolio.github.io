@@ -1,0 +1,14 @@
+Rehearse communication across a visit
+
+A provisional, nonclinical browser concept informed by the project’s language-and-navigation research topic. Prepare a sample communication card, make a staff/interpreter handoff explicit and check next-step understanding.
+
+Evidence
+The public research framing covers language and navigation before, during and after a healthcare visit. Original research, findings and participant material remain reserved for private review.
+
+Limits
+This is not the hospital’s patient portal or a validated care service. It gives no medical advice, clinical translation, appointment booking or care plan, and uses no patient records. Interpreter availability is simulated.
+
+Proposed evaluation
+Review with appropriate clinical, language-access and accessibility professionals before any patient-facing use. Test comprehension and handoff continuity without inventing participant outcomes or clinical benefit.
+
+This is a newly implemented browser adaptation. Original Figma files are unchanged. No new interviews, comparative outcomes or operational benefit are claimed.

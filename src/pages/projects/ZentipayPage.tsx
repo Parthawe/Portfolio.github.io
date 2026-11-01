@@ -1,3 +1,4 @@
+import PrivatePrototypeStudy from '../../components/case-study/PrivatePrototypeStudy'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import CsScreenStrip from '../../components/case-study/CsScreenStrip'
@@ -141,6 +142,8 @@ export default function ZentipayPage() {
           ]}
           showHeaderSummary={false}
         />
+<PrivatePrototypeStudy project="zentipay" />
+
 
         <ProjectQuickSummary
           slug="zentipay"

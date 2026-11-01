@@ -1,0 +1,14 @@
+Follow an invoice-linked business payout
+
+A 2026 B2B extension focused on invoice-linked business payouts: recipient, quote, approval and tracking. It is separate from the original merchant-onboarding and crypto-payment design record.
+
+Evidence
+Original TransFi brand and merchant interface evidence, plus the current official B2B trade-payment documentation for an invoice-linked payout sequence.
+
+Limits
+Recipients, rates, fees, balances, approval roles and settlement events are fixtures. Role switching rehearses approval; it is not authentication or authorization. No KYB, bank, supplier-validation or provider integration is connected.
+
+Proposed evaluation
+Test whether a finance operator can explain the invoice, total debit, recipient amount and next owner of the request. Include expiry, insufficient balance, self-approval and provider-failure recovery.
+
+This is a newly implemented browser adaptation. Original Figma files are unchanged. No new interviews, comparative outcomes or operational benefit are claimed.

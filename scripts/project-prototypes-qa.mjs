@@ -1,3 +1,4 @@
+import {verifyPrivateProjectEntry,privateProjectSlugs} from './private-project-entry-assertions.mjs'
 import { verifyRaahiPrivateEntry } from './raahi-private-entry-assertions.mjs'
 import assert from 'node:assert/strict'
 import { chromium, expect } from '@playwright/test'
@@ -18,6 +19,7 @@ await page.route('https://www.figma.com/embed?*',route=>route.fulfill({contentTy
 page.on('pageerror',e=>errors.push(e.message))
 for(const slug of slugs) {
  await page.goto(`${base}/experience-preview/${slug}`,{waitUntil:'domcontentloaded'})
+ if(privateProjectSlugs.includes(slug)){await verifyPrivateProjectEntry(page,slug);results.push(`${profile.name} private ${slug} entry`);continue}
  if(slug==='raahi-project'){await verifyRaahiPrivateEntry(page);results.push(`${profile.name} private Raahi entry`);continue}
  await page.locator('.original-interface-study > summary').click()
  const app=page.locator('[data-prototype]')

@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import { Link, useSearchParams, useLocation } from 'react-router-dom'
+import { privatePrototypeStudy } from '../data/privatePrototypeStudies'
 import { projects } from '../data/projects'
 import { interfaceSource, interfaceKindMatches } from '../data/interfaceSources'
 import { projectExperience } from '../data/projectExperiences'
@@ -43,7 +44,7 @@ function ExperienceCard({ slug, index }: { slug: string; index: number }) {
   const [failed, setFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
   if (!project || !experience) return null
-  const preview = previews[slug]
+  const preview = privatePrototypeStudy(slug) ? {description:privatePrototypeStudy(slug).intro,image:privatePrototypeStudy(slug).image,note:'Private working prototype · owner sign-in'} : previews[slug]
   const original = interfaceSource(slug)
   const originalLabel = original?.privatePreview ? 'Private browser prototype' : original?.live ? original.live.verified ? 'Live product' : 'Product link · verification needed' : original?.prototypes.length ? original.prototypes[0].provenance==='reconstructed'?'Figma task prototype':'Original Figma prototype' : original ? 'Browser study' : undefined
   const action = original?.privatePreview ? 'Open private prototype' : original ? original.live?.verified ? 'Explore the original product' : original.prototypes.length ? 'Try the Figma prototype' : 'Inspect the browser study' : actions[slug] || 'Open experience'
@@ -72,7 +73,7 @@ export default function ExperienceReviewIndex({ slugs }: { slugs: string[] }) {
   const setFilter=(value:string)=>update('kind',value)
   const setQuery=(value:string)=>update('q',value)
   const reset=()=>setParams({}, {replace:true,preventScrollReset:true})
-  const matches=(slug:string,id:string)=>id==='all'||(id==='games'?projectExperience(slug)?.collection==='game':id==='tools'?projectExperience(slug)?.presentation==='original-experiment'&&projectExperience(slug)?.collection!=='game':filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.presentation||''))
+  const matches=(slug:string,id:string)=>id==='all'||(id==='interfaces'&&!!interfaceSource(slug)?.privatePreview)||(id==='games'?projectExperience(slug)?.collection==='game':id==='tools'?projectExperience(slug)?.presentation==='original-experiment'&&projectExperience(slug)?.collection!=='game':filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.presentation||''))
   const words=query.trim().toLowerCase().split(/\s+/).filter(Boolean)
   const visible=slugs.filter(slug=>{const text=`${slug==='the-omakase'?'omakasi omakase arcade game sushi':''} ${projects.find(p=>p.slug===slug)?.name} ${previews[slug]?.description} ${actions[slug]} ${interfaceSource(slug)?.sourceNote||''}`.toLowerCase();return matches(slug,filter)&&(filter!=='interfaces'||interfaceKindMatches(slug,source))&&words.every(word=>text.includes(word))})
   return <><Nav /><main className="experience-review" id="main-content">

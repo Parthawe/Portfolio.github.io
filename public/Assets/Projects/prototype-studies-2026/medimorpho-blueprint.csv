@@ -1,0 +1,4 @@
+Stage,Visible action,Prototype state,Future dependency,Recovery
+Prepare,Record a preference and sample question,Local communication card,No patient or appointment system,Explain the sample-data boundary before input
+Handoff,Make the requested assistance visible,"Requested, unavailable or staff-confirmed demo status",No interpreter dispatch or automated clinical translation,Keep the request visible and ask staff about qualified assistance
+Understand,Rehearse next-step comprehension,Two conversation prompts,No clinical instructions or validated care plan,Return to the staff conversation when a step is unclear

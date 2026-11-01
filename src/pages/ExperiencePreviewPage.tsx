@@ -6,11 +6,13 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import DraftReviewNav, {draftReviewOrder} from '../components/DraftReviewNav'
 import ThemeToggle from '../components/ThemeToggle'
 import ExperienceReviewIndex from '../components/ExperienceReviewIndex'
+import { privatePrototypeStudy } from '../data/privatePrototypeStudies'
 import { projectExperience, experienceRegistry } from '../data/projectExperiences'
 import '../styles/typeface-page.css'
 import '../styles/glyph-editor.css'
 import '../styles/type-workshop.css'
 import '../components/physical-worlds/worlds.css'
+const PrivateProjectExperiencePage = lazy(() => import('./PrivateProjectExperiencePage'))
 const RaahiExperiencePage = lazy(() => import('./RaahiExperiencePage'))
 const ProjectPrototypePage = lazy(() => import('./ProjectPrototypePage'))
 const PhysicalWorld = lazy(() => import('../components/physical-worlds/PhysicalWorld'))
@@ -24,8 +26,9 @@ const GlyphEditor = lazy(() => import('../components/GlyphEditor'))
 export default function ExperiencePreviewPage() {
   const { project = '' } = useParams()
   const directory=useDraftReturn()
-  const previewProjects=draftReviewOrder.filter(slug=>experienceRegistry.some(item=>item.slug===slug&&item.status==='draft'))
+  const previewProjects=draftReviewOrder.filter(slug=>experienceRegistry.some(item=>item.slug===slug&&(item.status==='draft'||item.hasPrivatePrototype)))
   if (experiencePreviewsEnabled && !project) return <ExperienceReviewIndex slugs={[...experienceRegistry.filter(item=>item.status==='approved').map(item=>item.slug),...previewProjects]} />
+  if (experiencePreviewsEnabled && privatePrototypeStudy(project)) return <Suspense fallback={<p role="status">Preparing the private prototype entry…</p>}><PrivateProjectExperiencePage /></Suspense>
   if (experiencePreviewsEnabled && project === 'raahi-project') return <Suspense fallback={<p role="status">Preparing Raahi…</p>}><RaahiExperiencePage /></Suspense>
   if (experiencePreviewsEnabled && projectExperience(project)?.format === 'prototype') return <Suspense fallback={<p role="status">Preparing the workflow prototype…</p>}><ProjectPrototypePage preview /></Suspense>
   const physical = ['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(project)
