@@ -1,0 +1,14 @@
+Review the token transfer before confirming
+
+A new working adaptation of the original centred token-transfer screen. The recipient, token, balance and invoice remain connected through review, a simulated settlement and a persistent transfer record.
+
+Evidence
+Original send-crypto screen, completed-transfer invoice, wallet overview and transaction history from the project archive.
+
+Limits
+USDT amounts use fixed two-decimal fixtures, not token-network precision or a live exchange quote. Contacts are fictional. No wallet, chain, email, identity or payment provider is connected.
+
+Proposed evaluation
+Ask users to explain the token, recipient and total debit before confirmation. Test a failed settlement and retrieval of the correct receipt; do not infer financial trust or transfer performance from software checks.
+
+This is a newly implemented browser adaptation. Original Figma files are unchanged. No new interviews, comparative outcomes or operational benefit are claimed.

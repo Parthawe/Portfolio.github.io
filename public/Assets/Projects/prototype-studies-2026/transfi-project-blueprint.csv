@@ -1,0 +1,5 @@
+Stage,Visible action,Prototype state,Future dependency,Recovery
+Prepare,Choose a sample supplier and invoice,Project-specific local request,No provider recipient or KYB API,Reject missing invoice or invalid amount
+Review,"Inspect principal, fee and recipient amount",Quote expires after 60 seconds,No current FX or production fee quote,Create a fresh request when the quote expires
+Approve,Separate maker from reviewer,Local role rehearsal and event history,No real authorization system,Block maker self-approval in the model
+Track,Simulate failure or settlement,Atomic one-time demo debit and receipt,No bank or provider callback,Failure leaves the balance unchanged

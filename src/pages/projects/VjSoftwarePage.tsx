@@ -1,3 +1,4 @@
+import PrivatePrototypeStudy from '../../components/case-study/PrivatePrototypeStudy'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -45,6 +46,8 @@ export default function VjSoftwarePage(){return <>
           heroImage="/Assets/Projects/vj/photos/car-parking.png"
           heroAlt="Original VJ Parivar vehicle parking screen with availability and booking window"
         />
+<PrivatePrototypeStudy project="vj-software" />
+
 
         <CsSection id="cs-context" title="The decision starts with a place">
           <CsBody><p>My work focused on parking within VJ’s resident-services app. Choosing a space requires its location and dimensions, followed by a booking record the resident can find again. The original screens below show that sequence; adoption and task-completion results are not recorded.</p></CsBody>

@@ -1,0 +1,4 @@
+Stage,Visible action,Prototype state,Future dependency,Recovery
+Compose,Add and order page blocks,Validated document model,No hosted publishing service,Undo or restore a saved project
+Inspect,"Compare output, code and anatomy",Generated HTML in a sandbox,No arbitrary code execution service,Escape learner text and reject unsafe import IDs
+Save,Export HTML or project JSON,Project-specific local storage,No cloud account,Download the project; recover malformed imports

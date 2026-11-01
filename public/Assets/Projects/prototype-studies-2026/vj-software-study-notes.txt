@@ -1,0 +1,14 @@
+Choose two spaces and recover the record
+
+A working parking rehearsal based on the original map-first selection flow. Compare spaces, choose one car bay and one two-wheeler bay, review a demo hold and simulate a payment response.
+
+Evidence
+Original wing/floor selection, parking map, vehicle filters, payment and post-booking record.
+
+Limits
+The schematic plan, availability, price and payment outcomes are fixtures. A demo receipt creates no real booking, ownership or parking entitlement.
+
+Proposed evaluation
+Test whether residents can explain the chosen location, dimensions and commitment before confirming. Include an unavailable space, expired hold and failed payment. The source archive does not establish allocation fairness or usability results.
+
+This is a newly implemented browser adaptation. Original Figma files are unchanged. No new interviews, comparative outcomes or operational benefit are claimed.

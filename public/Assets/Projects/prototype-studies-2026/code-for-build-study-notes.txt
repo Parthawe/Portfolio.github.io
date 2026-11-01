@@ -1,0 +1,14 @@
+Build a page, then inspect the code
+
+A new working browser adaptation of the original phone-first block grammar. Add and edit blocks, change their order, inspect the source-derived anatomy, and export a real HTML page.
+
+Evidence
+Original block grammar, code/output pair, phone screens and process maps from the project archive.
+
+Limits
+The exported page is working HTML/CSS. It is not a recovered version of the original app, a Dart runtime, or evidence of improved learning outcomes.
+
+Proposed evaluation
+Ask a first-time learner to predict what reordering two blocks will change, build the result, then reopen the saved project. Record comprehension and recovery without treating task execution as a learning outcome.
+
+This is a newly implemented browser adaptation. Original Figma files are unchanged. No new interviews, comparative outcomes or operational benefit are claimed.

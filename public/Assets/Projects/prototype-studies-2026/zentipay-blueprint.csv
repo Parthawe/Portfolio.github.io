@@ -1,0 +1,5 @@
+Stage,Visible action,Prototype state,Future dependency,Recovery
+Prepare,Select a fixture recipient and amount,Local token-transfer draft,No real wallet address or network lookup,Reject invalid amounts
+Review,Keep amount and fee together,Expiring demo quote,No current token price or network fee,Edit details or request a new quote
+Settle,Simulate the provider response,One-time local debit only on success,No blockchain transaction,Failure preserves the demo balance
+Recover,Retrieve the transfer record,Persistent local ledger and receipt,No emailed invoice,Download the receipt; retain history after reload

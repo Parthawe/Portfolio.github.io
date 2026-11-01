@@ -60,7 +60,7 @@ for (const [engine, width, height, theme] of [[chromium,1440,1000,'light'],[chro
     await page.getByRole('searchbox').fill('nothing-matches-this-project')
     await expect(page.getByRole('heading', { name: 'No matching experiences' })).toBeVisible()
     await page.getByRole('button', { name: 'Show all experiences' }).click()
-    await expect(page.locator('.experience-review-card')).toHaveCount(20)
+    await expect(page.locator('.experience-review-card')).toHaveCount(23)
     await page.screenshot({ path: `${out}/directory-${engine.name()}-${width}.png`, fullPage: true })
 
     await page.goto(base + '/experience-preview/enigma')

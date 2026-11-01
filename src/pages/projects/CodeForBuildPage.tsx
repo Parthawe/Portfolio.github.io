@@ -1,3 +1,4 @@
+import PrivatePrototypeStudy from '../../components/case-study/PrivatePrototypeStudy'
 import DeferredCodeBlockStudy from '../../components/case-study/DeferredCodeBlockStudy'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
@@ -47,6 +48,8 @@ export default function CodeForBuildPage() {
           heroImage={`${CFB_PHOTOS}/phone-hero.png`}
           heroAlt="Code for Build hero with 3D block illustrations and mobile mockups"
         />
+<PrivatePrototypeStudy project="code-for-build" />
+
 
         <CsSection id="cs-glimpse" label="Glimpse" title="Learning to code on a phone">
           <CsBody>

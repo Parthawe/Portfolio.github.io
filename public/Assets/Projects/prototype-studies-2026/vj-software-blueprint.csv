@@ -1,0 +1,4 @@
+Stage,Visible action,Prototype state,Future dependency,Recovery
+Choose,Inspect bay dimensions and type,Fixture plan plus selected bay IDs,No live society inventory,Choose another floor or clear filters
+Review,Check the two-space allocation,Five-minute local demo hold,No real reservation or payment provider,Keep choices after a failed response; renew an expired hold
+Record,Confirm and inspect the receipt,One allocation per hold; local inventory exclusion,No legal document or ownership system,Retrieve the saved demo record

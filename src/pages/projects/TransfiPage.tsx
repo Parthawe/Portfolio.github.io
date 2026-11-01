@@ -1,3 +1,4 @@
+import PrivatePrototypeStudy from '../../components/case-study/PrivatePrototypeStudy'
 import { lazy, Suspense, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
@@ -37,10 +38,10 @@ export default function TransfiPage() {
     <>
       <Helmet>
         <title>TransFi &middot; Parth Pawar</title>
-        <meta name="description" content="TransFi, access-limited public preview of a crypto payment infrastructure redesign for multi-market merchant flows." />
+        <meta name="description" content="TransFi, access-limited project story with a private working B2B payout extension." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
-        <meta property="og:description" content="Crypto payment infrastructure redesign for multi-market merchant flows." />
+        <meta property="og:description" content="B2B cross-border payment story with original merchant-onboarding evidence and a private invoice-linked payout prototype." />
         <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/transfi-project_16x9.webp" />
       </Helmet>
 
@@ -67,7 +68,7 @@ export default function TransfiPage() {
           backLabel="Back to Work"
           tags={['Fintech', 'UX', 'Web3', 'Brand']}
           title="TransFi"
-          subtitle="Merchant onboarding and payment flows for crypto payment infrastructure."
+          subtitle="B2B cross-border payments: original merchant onboarding and a new invoice-linked payout prototype."
           info={[
             { label: 'Company', value: 'TransFi' },
             { label: 'Scope', value: 'Product Design, Brand, Systems' },
@@ -77,6 +78,8 @@ export default function TransfiPage() {
           liveUrl="https://www.transfi.com"
           showHeaderSummary={false}
         />
+<PrivatePrototypeStudy project="transfi-project" />
+
 
         <ProjectQuickSummary
           slug="transfi-project"

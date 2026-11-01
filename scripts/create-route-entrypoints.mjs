@@ -233,7 +233,7 @@ for (const slug of processSlugs) {
 const routes = [...new Set([
   'process', ...processSlugs.map(slug => `process/${slug}`),
   'physical-worlds', 'project-experiences', 'shuffle/simulation', 'typeface/workshop',
-  ...(process.env.VITE_EXPERIENCE_PREVIEWS_ENABLED==='1'?['experience-preview',...readExperienceRegistry().filter(item=>item.status==='draft').map(item=>`experience-preview/${item.slug}`)]:[]),
+  ...(process.env.VITE_EXPERIENCE_PREVIEWS_ENABLED==='1'?['experience-preview',...readExperienceRegistry().filter(item=>item.status==='draft'||item.hasPrivatePrototype).map(item=>`experience-preview/${item.slug}`)]:[]),
   ...[...readFileSync(join(root,'src/data/projectExperiences.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/prototype`),
   ...[...readFileSync(join(root,'src/data/projectRoutes.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/world`),
   ...sitemapRoutes,
