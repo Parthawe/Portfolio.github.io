@@ -7,7 +7,7 @@ const browser=await engine.launch();try{for(const theme of ['light','dark']){
  const p=await browser.newPage({viewport:{width,height:1000},hasTouch:width===390,isMobile:width===390});await p.addInitScript(t=>localStorage.setItem('theme',t),theme);p.on('pageerror',e=>errors.push(e.message));await p.goto(`${base}/experience-preview`)
  const cards=p.locator('.experience-review-card');await expect(cards).toHaveCount(23)
  for(const img of await cards.locator('img').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true)}
- assert.equal(new Set(await cards.evaluateAll(a=>a.map(x=>x.getAttribute('href')))).size,20)
+ assert.equal(new Set(await cards.evaluateAll(a=>a.map(x=>x.getAttribute('href')))).size,23)
  await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:`${out}/${name}-${theme}.png`})
  await p.getByRole('button',{name:/3D objects/}).click();await expect(cards).toHaveCount(4)
  await p.getByRole('button',{name:/Anatomy/}).click();await expect(cards).toHaveCount(2)
