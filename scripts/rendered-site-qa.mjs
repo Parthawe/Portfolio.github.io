@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { chromium } from '@playwright/test'
-import { canRetryTemporaryHttp } from './qa-network-policy.mjs'
+import { canRetryTemporaryHttp, collectModuleDependencies } from './qa-network-policy.mjs'
 
 const baseUrl = (process.env.QA_BASE_URL || 'http://127.0.0.1:4173').replace(/\/$/, '')
 const sitemapPath = process.env.QA_SITEMAP_PATH || 'public/sitemap.xml'
@@ -38,6 +38,8 @@ async function inspectRoute(browser, route, viewport) {
   const httpErrors = []
   const issues = []
   const warnings = []
+  const scriptResponses = new Map()
+  let moduleDependencies = []
   let status = 0
   let timedOut = false
 
@@ -51,8 +53,11 @@ async function inspectRoute(browser, route, viewport) {
     consoleErrors.push({ text: message.text(), url: location })
   })
   page.on('response', response => {
-    if (response.status() >= 400 && new URL(response.url()).origin === new URL(baseUrl).origin) {
+    if (new URL(response.url()).origin !== new URL(baseUrl).origin) return
+    if (response.status() >= 400) {
       httpErrors.push({ status: response.status(), url: response.url() })
+    } else if (response.request().resourceType() === 'script') {
+      scriptResponses.set(response.url(), response)
     }
   })
   page.on('pageerror', (error) => pageErrors.push(error.message))
@@ -186,13 +191,14 @@ async function inspectRoute(browser, route, viewport) {
     timedOut = error.name === 'TimeoutError'
     issues.push(error.message)
   } finally {
+    moduleDependencies = await collectModuleDependencies({ httpErrors, consoleErrors, pageErrors, scriptResponses })
     if (consoleErrors.length) issues.push(`Console errors: ${consoleErrors.map(error => `${error.text} [${error.url || 'URL unavailable'}]`).join(' | ')}`)
     if (httpErrors.length) issues.push(`HTTP resources: ${httpErrors.map(error => `${error.status} ${error.url}`).join(' | ')}`)
     if (pageErrors.length) issues.push(`Page errors: ${pageErrors.join(' | ')}`)
     await page.close()
   }
 
-  const temporaryHttp = canRetryTemporaryHttp({ httpErrors, consoleErrors, pageErrors, issues, timedOut })
+  const temporaryHttp = canRetryTemporaryHttp({ httpErrors, consoleErrors, pageErrors, issues, timedOut, moduleDependencies })
   return {
     route, viewport: viewport.name, status, issues, warnings,
     retryable: temporaryHttp || (timedOut && !httpErrors.length && !consoleErrors.length && !pageErrors.length),
