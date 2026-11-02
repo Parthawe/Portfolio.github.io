@@ -1,5 +1,12 @@
 export type PrototypeStudy = {slug:string; name:string; title:string; intro:string; evidence:string; limits:string; steps:string[]; layers:string[][]; validation:string; image:string; mobileImage:string}
-export const privatePrototypeOrigin = "https://portfolio-prototypes-20261101.pawar-d-parth.chatgpt.site"
+export const privatePrototypeUrls: Record<string,string> = {
+  "transfi-project": "https://transfi-ui-20261101.pawar-d-parth.chatgpt.site",
+  "zentipay": "https://zentipay-ui-20261101.pawar-d-parth.chatgpt.site",
+  "code-for-build": "https://code-for-build-ui-20261101.pawar-d-parth.chatgpt.site",
+  "vj-software": "https://vj-parking-ui-20261101.pawar-d-parth.chatgpt.site",
+  "medimorpho": "https://nyu-communication-ui-20261101.pawar-d-parth.chatgpt.site"
+}
+export const privatePrototypeUrl = (slug:string) => privatePrototypeUrls[slug]
 export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
   "code-for-build": {
     "name": "Code for Build",
@@ -8,7 +15,7 @@ export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
     "evidence": "Original block grammar, code/output pair, phone screens and process maps from the project archive.",
     "limits": "The exported page is working HTML/CSS. It is not a recovered version of the original app, a Dart runtime, or evidence of improved learning outcomes.",
     "steps": [
-      "Edit the selected heading, then apply the edit and inspect Output.",
+      "Edit the selected heading, then apply the edit and inspect the live output.",
       "Add, reorder or remove a block. Compare Code and Structure; try Undo and Redo.",
       "Export HTML to run the page separately, or save and reopen the project JSON."
     ],
@@ -37,8 +44,8 @@ export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
     ],
     "validation": "Ask a first-time learner to predict what reordering two blocks will change, build the result, then reopen the saved project. Record comprehension and recovery without treating task execution as a learning outcome.",
     "slug": "code-for-build",
-    "image": "/Assets/Projects/prototype-studies-2026/code-for-build-desktop.png",
-    "mobileImage": "/Assets/Projects/prototype-studies-2026/code-for-build-mobile.png"
+    "image": "/Assets/Projects/prototype-studies-2026/code-for-build-ui-v2-desktop.png",
+    "mobileImage": "/Assets/Projects/prototype-studies-2026/code-for-build-ui-v2-mobile.png"
   },
   "vj-software": {
     "name": "VJ Parivar",
@@ -47,7 +54,7 @@ export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
     "evidence": "Original wing/floor selection, parking map, vehicle filters, payment and post-booking record.",
     "limits": "The schematic plan, availability, price and payment outcomes are fixtures. A demo receipt creates no real booking, ownership or parking entitlement.",
     "steps": [
-      "Choose a wing/floor and a car bay, then switch vehicle type and choose a two-wheeler bay.",
+      "Compare the floor and vehicle filters, then choose one car bay and one two-wheeler bay.",
       "Review both spaces, acknowledge the demo boundary and try a failed response before retrying.",
       "Confirm the demo allocation, inspect the saved record and download its receipt."
     ],
@@ -76,8 +83,8 @@ export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
     ],
     "validation": "Test whether residents can explain the chosen location, dimensions and commitment before confirming. Include an unavailable space, expired hold and failed payment. The source archive does not establish allocation fairness or usability results.",
     "slug": "vj-software",
-    "image": "/Assets/Projects/prototype-studies-2026/vj-software-desktop.png",
-    "mobileImage": "/Assets/Projects/prototype-studies-2026/vj-software-mobile.png"
+    "image": "/Assets/Projects/prototype-studies-2026/vj-software-ui-v2-desktop.png",
+    "mobileImage": "/Assets/Projects/prototype-studies-2026/vj-software-ui-v2-mobile.png"
   },
   "transfi-project": {
     "name": "TransFi",
@@ -122,8 +129,8 @@ export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
     ],
     "validation": "Test whether a finance operator can explain the invoice, total debit, recipient amount and next owner of the request. Include expiry, insufficient balance, self-approval and provider-failure recovery.",
     "slug": "transfi-project",
-    "image": "/Assets/Projects/prototype-studies-2026/transfi-project-desktop.png",
-    "mobileImage": "/Assets/Projects/prototype-studies-2026/transfi-project-mobile.png"
+    "image": "/Assets/Projects/prototype-studies-2026/transfi-project-ui-v2-desktop.png",
+    "mobileImage": "/Assets/Projects/prototype-studies-2026/transfi-project-ui-v2-mobile.png"
   },
   "zentipay": {
     "name": "ZentiPay",
@@ -134,7 +141,7 @@ export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
     "steps": [
       "Choose a fixture wallet contact and enter a demo token amount.",
       "Review the recipient amount, illustrative fee and total before confirming the request.",
-      "Simulate settlement or failure, then inspect history and download the demo receipt."
+      "Choose a demo success or failure response during review, then inspect history and download the receipt."
     ],
     "layers": [
       [
@@ -168,8 +175,8 @@ export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
     ],
     "validation": "Ask users to explain the token, recipient and total debit before confirmation. Test a failed settlement and retrieval of the correct receipt; do not infer financial trust or transfer performance from software checks.",
     "slug": "zentipay",
-    "image": "/Assets/Projects/prototype-studies-2026/zentipay-desktop.png",
-    "mobileImage": "/Assets/Projects/prototype-studies-2026/zentipay-mobile.png"
+    "image": "/Assets/Projects/prototype-studies-2026/zentipay-ui-v2-desktop.png",
+    "mobileImage": "/Assets/Projects/prototype-studies-2026/zentipay-ui-v2-mobile.png"
   },
   "medimorpho": {
     "name": "NYU Langone",
@@ -207,8 +214,8 @@ export const privatePrototypeStudies: Record<string,PrototypeStudy> = {
     ],
     "validation": "Review with appropriate clinical, language-access and accessibility professionals before any patient-facing use. Test comprehension and handoff continuity without inventing participant outcomes or clinical benefit.",
     "slug": "medimorpho",
-    "image": "/Assets/Projects/prototype-studies-2026/medimorpho-desktop.png",
-    "mobileImage": "/Assets/Projects/prototype-studies-2026/medimorpho-mobile.png"
+    "image": "/Assets/Projects/prototype-studies-2026/medimorpho-ui-v2-desktop.png",
+    "mobileImage": "/Assets/Projects/prototype-studies-2026/medimorpho-ui-v2-mobile.png"
   }
 }
 export const privatePrototypeStudy = (slug:string) => privatePrototypeStudies[slug]
