@@ -29,3 +29,12 @@ The active release QA suites cover all five public entries. Existing Figma sourc
 ## Evaluation remaining
 
 Software checks establish that these fixture flows run. Representative-user comprehension, assistive-technology review, physical parking-plan validity, finance/compliance review, language review and appropriate healthcare professional review remain necessary. No new participant count, impact metric, service performance or clinical benefit is claimed.
+
+
+## Separate UI/UX prototypes
+
+The five projects now use separate owner-private app destinations. Their public entries carry updated sample-only captures from the Paper-derived interfaces. The original project evidence and approval gates remain separate.
+
+TransFi uses an invoice queue and role-aware approval; ZentiPay uses a wallet review and receipt flow; Code for Build uses source-colored blocks and real HTML output; VJ uses an open-bay plan with a mobile selection summary; NYU remains a provisional nonclinical communication rehearsal. Model and browser tests verify software behavior, not research or service outcomes.
+
+The public source contains captures and launch metadata. It does not contain the application source or grant preview access.
