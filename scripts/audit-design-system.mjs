@@ -73,15 +73,23 @@ for (const file of projectPages) {
   // Validate their composed semantic header, onward links, and footer instead.
   const practice = /return <PracticeEntry slug="[a-z-]+" \/>/.test(text)
     && /import PracticeEntry from ['"]..\/..\/components\/case-study\/PracticeEntry['"]/.test(text)
+  // The alternate Mentra study uses a persistent brief and chapter rail in
+  // place of the standard shell. Check its equivalent landmarks and links.
+  const studio = file.endsWith('MentraStudioPage.tsx')
+    && /<aside className="ms-brief">/.test(text)
+    && /<h1>/.test(text)
+    && /aria-label="Case study chapters"/.test(text)
+    && /to="\/mentra-miniapps"/.test(text)
+    && /<footer className="ms-story-footer">/.test(text)
   const shell = {
     // Typeface is a deliberately custom, interactive specimen hero. Treat its
     // semantic hero shell as the project-header equivalent rather than forcing
     // the shared case-study component into a different visual language.
-    projectHeader: /<ProjectHeader\b|<section\s+className="tf-hero"/.test(text) || (practice && /<h1>/.test(practiceShell)),
+    projectHeader: studio || /<ProjectHeader\b|<section\s+className="tf-hero"/.test(text) || (practice && /<h1>/.test(practiceShell)),
     // MediMorphoPage owns the route shell while its gated child owns BottomNav.
-    bottomNav: /<BottomNav\b/.test(text) || file.endsWith('MediMorphoPage.tsx') || (practice && /<Link to="\/work"/.test(practiceShell)),
-    nextProject: /<NextProject\b/.test(text) || (practice && /entry.related.map/.test(practiceShell)),
-    footer: /<Footer\b/.test(text) || (practice && /<Footer\b/.test(practiceShell)),
+    bottomNav: studio || /<BottomNav\b/.test(text) || file.endsWith('MediMorphoPage.tsx') || (practice && /<Link to="\/work"/.test(practiceShell)),
+    nextProject: studio || /<NextProject\b/.test(text) || (practice && /entry.related.map/.test(practiceShell)),
+    footer: studio || /<Footer\b/.test(text) || (practice && /<Footer\b/.test(practiceShell)),
   }
   const missing = Object.entries(shell)
     .filter(([, present]) => !present)
