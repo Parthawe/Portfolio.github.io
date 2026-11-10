@@ -97,6 +97,7 @@ const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
 const MotionPage = lazy(() => import('./pages/MotionPage'))
 const AfterHoursPage = lazy(() => import('./pages/AfterHoursPage'))
 const PerplexityPage = lazy(() => import('./pages/PerplexityPage'))
+const MentraStudioPage = lazy(() => import('./pages/projects/MentraStudioPage'))
 
 // Project page components — auto-generated from registry
 const projectPages = projectRoutes.map(p => ({
@@ -123,6 +124,7 @@ export default function App() {
     <ProjectReturnProvider>
     <Suspense fallback={<Loading />}>
       <Routes>
+        <Route path="/mentra/studio" element={<MentraStudioPage />} />
         <Route element={<ExperienceChatLayout />} >
           {ExperiencePreviewPage && <Route path="/experience-preview/:project" element={<ExperiencePreviewPage />} />}
           <Route path="/typeface/workshop" element={<TypefaceWorkshopPage/>}/>

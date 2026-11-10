@@ -18,6 +18,7 @@ const indexHtml = readFileSync(indexPath, 'utf8')
 const siteOrigin = 'https://designwhich.works'
 const defaultDescription = 'Portfolio of Parth Pawar, a Product Designer crafting trusted systems across AI wearables, fintech, civic tools, design engineering, and physical interaction.'
 const routeLabels = new Map([
+  ['mentra/studio', 'Mentra / Product study'],
   ['after-hours', 'After Hours'],
   ['work', 'Work'],
   ['about', 'About'],
@@ -245,6 +246,7 @@ const routes = [...new Set([
   'graveyard',
   'studio',
   'mentra-website',
+  'mentra/studio',
   'design-engineering',
   'design-engineer',
   'creative-tech',
@@ -255,7 +257,7 @@ for (const route of routes) {
   if (route.includes('..')) continue
   const routeDir = join(distDir, route)
   mkdirSync(routeDir, { recursive: true })
-  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route, {noindex:route.startsWith('experience-preview')}))
+  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route, {noindex:route.startsWith('experience-preview') || route === 'mentra/studio'}))
   written += 1
 }
 
