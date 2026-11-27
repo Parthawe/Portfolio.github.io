@@ -96,6 +96,7 @@ const ProcessLibraryPage = lazy(() => import('./pages/ProcessLibraryPage'))
 const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
 const MotionPage = lazy(() => import('./pages/MotionPage'))
 const AfterHoursPage = lazy(() => import('./pages/AfterHoursPage'))
+const GlasslyOnboardingPage = lazy(() => import('./pages/GlasslyOnboardingPage'))
 const PerplexityPage = lazy(() => import('./pages/PerplexityPage'))
 
 // Project page components — auto-generated from registry
@@ -123,6 +124,7 @@ export default function App() {
     <ProjectReturnProvider>
     <Suspense fallback={<Loading />}>
       <Routes>
+        <Route path="/glassly/onboarding" element={<GlasslyOnboardingPage />} />
         <Route element={<ExperienceChatLayout />} >
           {ExperiencePreviewPage && <Route path="/experience-preview/:project" element={<ExperiencePreviewPage />} />}
           <Route path="/typeface/workshop" element={<TypefaceWorkshopPage/>}/>

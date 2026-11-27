@@ -789,5 +789,43 @@
       }
     ],
     "exploration": "Could two frame variants remain distinguishable when the packaging is seen only briefly?"
+  },
+  {
+    "slug": "glassly",
+    "artifacts": [
+      {
+        "id": "glassly-supplied-homepage",
+        "title": "Phone-first homepage opening",
+        "src": "/Assets/Projects/Glassly/homepage-hero.webp",
+        "alt": "Supplied Glassly homepage with outlined glasses and phone-first download and demo actions",
+        "stage": "material",
+        "caption": "Opening crop from the homepage supplied for this case study.",
+        "sourceHref": "/glassly#glassly-product",
+        "creator": "User-supplied Glassly homepage",
+        "evidenceNote": "Static website capture. Live app behavior and compatibility have not been retested."
+      },
+      {
+        "id": "glassly-supplied-widget",
+        "title": "Home-screen access",
+        "src": "/Assets/Projects/Glassly/homepage-widget.webp",
+        "alt": "Android Glassly widget and home-screen miniapp sequence from the supplied homepage",
+        "stage": "material",
+        "caption": "The homepage explains opening, using the widget, pinning and launching miniapps.",
+        "sourceHref": "/glassly#glassly-hardware",
+        "creator": "User-supplied Glassly homepage",
+        "evidenceNote": "Section crop from the supplied static capture."
+      },
+      {
+        "id": "glassly-supplied-developer",
+        "title": "Developer quickstart",
+        "src": "/Assets/Projects/Glassly/homepage-developer.webp",
+        "alt": "Glassly developer quickstart and miniapp example from the supplied homepage",
+        "stage": "material",
+        "caption": "The developer path follows the consumer product story.",
+        "sourceHref": "/glassly#glassly-hardware",
+        "creator": "User-supplied Glassly homepage",
+        "evidenceNote": "The code is part of the screenshot. SDK execution has not been retested."
+      }
+    ]
   }
 ]
