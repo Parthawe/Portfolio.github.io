@@ -43,6 +43,7 @@ const routeLabels = new Map([
   ['medimorpho', 'NYU Langone'],
   ['mentra-miniapps', 'Mentra MiniApps'],
   ['glassly', 'Glassly'],
+  ['glassly/onboarding', 'Glassly onboarding'],
   ['transfi-project', 'TransFi'],
   ['clawed-chat', 'Clawed'],
   ['executivelens', 'ExecutiveLens'],
@@ -68,7 +69,7 @@ const routeLabels = new Map([
 ])
 const routeDescriptions = new Map([
   ['after-hours', 'An endless isometric floor of original animated workshops by Parth Pawar. Drag, zoom and explore the rooms.'],
-  ['glassly', 'Glassly: product storytelling, brand guidelines and the original synchronized phone-and-glasses website demo by Parth Pawar.'],
+  ['glassly', 'Glassly website design connecting phone-first miniapps, a home-screen widget, compatible glasses and a developer path, with the supplied homepage and earlier design artifacts.'],
   ['notes', 'Visitor notes and feedback on Parth Pawar’s portfolio. Leave a hello or share a thought.'],
   ['work', 'Selected work by Parth Pawar across AI wearables, fintech, UX design, creative technology, installations, and brand systems.'],
   ['about', 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra.'],
@@ -102,10 +103,10 @@ const routeDescriptions = new Map([
 ])
 const routeSocialPreviews = new Map([
   ['glassly', {
-    image: '/Assets/Projects/Glassly/cover.webp',
-    alt: 'Glassly identity with attributed Even Realities G2 partner hardware.',
-    width: 1200,
-    height: 900,
+    image: '/Assets/Projects/Glassly/homepage-hero.webp',
+    alt: 'Supplied Glassly homepage with outlined glasses and phone-first app actions.',
+    width: 2328,
+    height: 1356,
   }],
   ['medimorpho', {
     image: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
@@ -245,6 +246,7 @@ const routes = [...new Set([
   'graveyard',
   'studio',
   'mentra-website',
+  'glassly/onboarding',
   'design-engineering',
   'design-engineer',
   'creative-tech',
@@ -255,7 +257,7 @@ for (const route of routes) {
   if (route.includes('..')) continue
   const routeDir = join(distDir, route)
   mkdirSync(routeDir, { recursive: true })
-  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route, {noindex:route.startsWith('experience-preview')}))
+  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route, {noindex: route.startsWith('experience-preview') || route === 'glassly/onboarding'}))
   written += 1
 }
 

@@ -1520,5 +1520,33 @@
   "/Assets/Projects/mentra-miniapps/figma/store-installed.png": {
     "width": 390,
     "height": 1166
+  },
+  "/Assets/Projects/Glassly/homepage-developer.webp": {
+    "width": 1690,
+    "height": 1440
+  },
+  "/Assets/Projects/Glassly/homepage-ecosystem.webp": {
+    "width": 1690,
+    "height": 1464
+  },
+  "/Assets/Projects/Glassly/homepage-hardware.webp": {
+    "width": 1690,
+    "height": 1400
+  },
+  "/Assets/Projects/Glassly/homepage-hero.webp": {
+    "width": 2328,
+    "height": 1356
+  },
+  "/Assets/Projects/Glassly/homepage-store.webp": {
+    "width": 1690,
+    "height": 1224
+  },
+  "/Assets/Projects/Glassly/homepage-supplied.webp": {
+    "width": 2328,
+    "height": 10735
+  },
+  "/Assets/Projects/Glassly/homepage-widget.webp": {
+    "width": 1690,
+    "height": 1220
   }
 }

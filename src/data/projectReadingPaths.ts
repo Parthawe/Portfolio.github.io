@@ -1,5 +1,6 @@
 /** Project-detail navigation only. Labels describe the material actually available. */
 export const projectReadingPaths: Record<string, { label: string; id: string }> = {
+  "glassly": { label: "Inspect the website sections", id: "glassly-hardware" },
   "mentra": { label: "See first-use decisions", id: "decision-first-use" },
   "mentra-miniapps": { label: "Inspect the Store screens", id: "cs-store-flow" },
   "transfi-project": { label: "See the public work", id: "cs-public-story" },
